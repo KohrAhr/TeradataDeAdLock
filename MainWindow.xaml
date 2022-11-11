@@ -1,0 +1,16 @@
+﻿<Window x:Class="TeradataDeAdL0ckHandler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeradataDeAdL0ckHandler"
+        mc:Ignorable="d"
+        Title="Teradata DBMS -- DeAdL0ck handler" MinWidth="320" MinHeight="200" Height="290" Width="472">
+    <Grid>
+        <Label Content="Connection string to Teradata DBMS" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,41,10,0" x:Name="txtServer" TextWrapping="NoWrap" MaxLength="100" Text="192.168.152.131" VerticalAlignment="Top"/>
+        <Button Content="Connect and run" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click"/>
+        <TextBox TextWrapping="Wrap" x:Name="txtLog" Text="" Margin="10,89,10,10" VerticalScrollBarVisibility="Visible" Background="OldLace" IsReadOnly="True" AcceptsTab="True"/>
+
+    </Grid>
+</Window>
