@@ -7,11 +7,25 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Xml.Linq;
 using Teradata.Client.Provider;
 
 // .Net Core 3.1 LTS
 // Teradata 16.20 Express
 // Teradata .Net Drivers 17.10
+
+/*
+    CREATE SET TABLE DEV.STORAGE1 ,FALLBACK ,
+    NO BEFORE JOURNAL,
+    NO AFTER JOURNAL,
+    CHECKSUM = DEFAULT,
+    DEFAULT MERGEBLOCKRATIO,
+    MAP = TD_MAP1
+    (
+    Id INT NOT NULL,
+     Name CHAR(30) CHARACTER SET LATIN NOT CASESPECIFIC)
+    PRIMARY INDEX ( Id );
+*/
 
 namespace TeradataDeAdL0ckHandler
 {
@@ -70,7 +84,7 @@ namespace TeradataDeAdL0ckHandler
 
 
             const string CONST_SQL1 = "LOCK TABLE DEV.STORAGE1 FOR WRITE NOWAIT DELETE FROM DEV.STORAGE1 WHERE (ID > 100);";
-            const string CONST_SQL2 = "LOCK TABLE DEV.STORAGE1 FOR WRITE NOWAIT INSERT INTO DEV.STORAGE1(Id, Name) VALUES(190, '190');";
+            const string CONST_SQL2 = "INSERT INTO DEV.STORAGE1(Id, Name) VALUES({0}, '{0}');";
             const string CONST_SQL5 = "UPDATE DEV.STORAGE1 SET NAME = 'AZ!';";
 
             // Ok. Run command 1
@@ -103,9 +117,12 @@ namespace TeradataDeAdL0ckHandler
 
                 try
                 {
-                    Log("Thread 2 run: " + CONST_SQL2);
-                    int result = RerunableRunSqlQuery(tdConnection2, false, CONST_SQL2, 2);
-                    Log("Thread 2 result is: " + result.ToString());
+                    Log("Thread 2 run 100 times: " + CONST_SQL2);
+                    for (int i = 0; i < 100; i++)
+                    {
+                        int result = RerunableRunSqlQuery(tdConnection2, false, String.Format(CONST_SQL2, i + 1), 2);
+                        Log("Thread 2 result is: " + result.ToString());
+                    }
                 }
                 catch (Exception e)
                 { 
@@ -124,7 +141,7 @@ namespace TeradataDeAdL0ckHandler
                 try
                 {
                     Log("Thread 3 run: " + CONST_SQL5);
-                    int result = RerunableRunSqlQuery(tdConnection3, false, CONST_SQL5, 2);
+                    int result = RerunableRunSqlQuery(tdConnection3, true, CONST_SQL5, 2);
                     Log("Thread 3 result is: " + result.ToString());
                 }
                 catch (Exception e)

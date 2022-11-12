@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeradataDeAdL0ckHandler"
         mc:Ignorable="d"
-        Title="Teradata DBMS -- DeAdL0ck handler" MinWidth="320" MinHeight="200" Height="290" Width="472">
+        Title="Teradata DBMS -- DeAdL0ck handler [12/NOV/2022] " MinWidth="320" MinHeight="200" Height="290" Width="472">
     <Grid>
         <Label Content="Connection string to Teradata DBMS" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox Margin="10,41,10,0" x:Name="txtServer" TextWrapping="NoWrap" MaxLength="100" Text="192.168.152.131" VerticalAlignment="Top"/>
         <Button Content="Connect and run" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click"/>
         <TextBox TextWrapping="Wrap" x:Name="txtLog" Text="" Margin="10,89,10,10" VerticalScrollBarVisibility="Visible" Background="OldLace" IsReadOnly="True" AcceptsTab="True"/>
+
+
+        <!--https://www.linkedin.com/posts/andrew-z-830915113_how-do-you-want-to-fail-today-how-to-handle-activity-6997196545297125376-JEEF-->
 
     </Grid>
 </Window>
